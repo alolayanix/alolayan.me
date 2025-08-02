@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- -->
+  <title>Fahad Alolayan</title>
+  <meta name="description" content="Personal website of Fahad Alolayan"/>
+  <meta name="keywords" content="Fahad Alolayan"/>
+  <meta name="robots" content="index,follow"/>
+  <link rel="canonical" href="https://alolayan.me"/>
+  <!-- -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <!-- -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://alolayan.me"/>
+  <meta property="og:title" content="Fahad Alolayan"/>
+  <meta property="og:description" content="Personal website of Fahad Alolayan"/>
+  <!-- -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:url" content="https://alolayan.me"/>
+  <meta property="twitter:title" content="Fahad Alolayan"/>
+  <meta property="twitter:description" content="Personal website of Fahad Alolayan"/>
+  <!-- -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Fahad Alolayan","url":"https://alolayan.me","sameAs":["https://sa.linkedin.com/in/fahad-alolayan-034722333","https://wa.me/966570301337","https://t.me/+966570301337"],"email":"mailto:fahad@alolayan.me","telephone":"+966500300000"}
+  </script>
+  <!-- -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <!-- -->
+  <style>
+    html,body {margin:0;padding:0;height:100%;background:#000;overflow-y:auto;font-family:'Poppins',sans-serif;-webkit-overflow-scrolling:touch}
+    #matrixCanvas {position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  </style>
+</head>
+<body>
+<canvas id="matrixCanvas"></canvas>
+<!-- -->
+<div class="relative z-10 flex items-center justify-center min-h-screen px-4 py-8">
+  <div class="bg-black/10 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-8 max-w-4xl w-full text-center mx-auto" data-aos="fade-up">
+    <!-- -->
+    <h1 class="font-extrabold text-4xl sm:text-6xl text-white" style="font-family:'Orbitron',sans-serif;" data-aos="fade-up" data-aos-delay="200">
+      Fahad Alolayan
+    </h1>
+    <!-- -->
+    <div class="mt-8" data-aos="fade-up" data-aos-delay="300">
+      <div class="grid grid-cols-3 md:grid-cols-6 gap-4 justify-items-center">
+        <a href="tel:0570301337" class="w-full bg-teal-600 hover:bg-teal-500 text-white font-semibold py-2 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center justify-center">
+          <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="https://wa.me/966570301337" class="w-full bg-green-600 hover:bg-green-500 text-white font-semibold py-2 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center justify-center" target="_blank">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://t.me/+966570301337" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-semibold py-2 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center justify-center" target="_blank">
+          <i class="fab fa-telegram-plane"></i>
+        </a>
+        <a href="mailto:fahad@alolayan.me" class="w-full bg-red-600 hover:bg-red-500 text-white font-semibold py-2 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center justify-center">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://sa.linkedin.com/in/fahad-alolayan-034722333" class="w-full bg-blue-700 hover:bg-blue-600 text-white font-semibold py-2 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center justify-center" target="_blank">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/alolayanix" class="w-full bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center justify-center" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </div>
+    <!-- -->
+  </div>
+</div>
+<!-- -->
+<script>
+  AOS.init({once:true});
+  const canvas = document.getElementById('matrixCanvas');
+  const ctx = canvas.getContext('2d');
+  const fontSize = 20;
+  const chars = ['0','1'];
+  let drops,cols,cw,ch,intervalId;
+  function init() {
+    cw = canvas.width = window.innerWidth;
+    ch = canvas.height = window.innerHeight;
+    cols = Math.floor(cw/fontSize);
+    drops = Array(cols);
+    for (let i = 0; i < cols; i++) {
+      drops[i] = Math.random() * (ch / fontSize);
+    }
+    if (intervalId) clearInterval(intervalId);
+    intervalId = setInterval(draw,120);
+  }
+  function draw() {
+    ctx.fillStyle = 'rgba(0,0,0,0.25)';
+    ctx.fillRect(0,0,cw,ch);
+    ctx.fillStyle = '#0A3';
+    ctx.font = fontSize+'px monospace';
+    for (let i = 0; i < drops.length; i++) {
+      const text = chars[Math.floor(Math.random()*chars.length)];
+      const x = i * fontSize;
+      const y = drops[i] * fontSize;
+      ctx.fillText(text,x,y);
+      if (y > ch && Math.random()>0.995) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+  window.addEventListener('load', init);
+  window.addEventListener('resize', init);
+</script>
+</body>
+</html>
